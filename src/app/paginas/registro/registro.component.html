@@ -1,0 +1,45 @@
+<app-cabecalho></app-cabecalho>
+<div class="conteudo-pagina">
+  <form [formGroup]="formulario" (ngSubmit)="adicionarLocalVenda($event)">
+    <div class="conteudo-formulario">
+      <mat-form-field appearance="fill">
+        <mat-label>Nome do ponto</mat-label>
+        <input matInput placeholder="Rei dos Açai" required formControlName="nome">
+      </mat-form-field>
+      <div class="camposSelecao">
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Uf</mat-label>
+          <select matNativeControl formControlName="estado" (change)="procurarMunicipio($event)">
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option *ngFor="let uf of ufs" value={{uf.sigla}}>{{uf.sigla}}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Municipio</mat-label>
+          <select matNativeControl formControlName="cidade" >
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option *ngFor="let municipio of municipios" value={{municipio.nome}}>{{municipio.nome}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Local do ponto</mat-label>
+        <input matInput placeholder="Praça dos Eucaliptos" required formControlName="local">
+      </mat-form-field>
+      <div class="funcionamento">
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Horário de início</mat-label>
+          <input matInput required type="time" formControlName="inicio">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Horário de término</mat-label>
+          <input matInput required type="time" formControlName="termino">
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Adicionar</button>
+  </form>
+</div>
+<div class="footer">
+  <app-rodape></app-rodape>
+</div>
